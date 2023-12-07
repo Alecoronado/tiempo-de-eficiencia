@@ -84,7 +84,7 @@ def main():
         # Filtrar el DataFrame para conservar solo las columnas seleccionadas
         selected_columns = [
             'NoProyecto', 'NoOperacion', 'Pais', 'Alias', 'SEC', 'ARE', 
-            'CARTA CONSULTA', 'APROBACIÓN', 'PERFIL', 'PROPUESTA OPERATIVA', 
+            'CARTA CONSULTA', 'APROBACIÓN', 'PERFIL', 'PROPUESTA OPERATIVA','FechaElegibilidad',
             'FechaVigencia', 'FechaEfectiva', 'Estado_x'
         ]
         filtered_df = data_merged_total[selected_columns]
@@ -102,7 +102,7 @@ def run(filtered_df):
         data = filtered_df.copy()
 
         # Convertir las columnas de fecha a datetime y extraer el año
-        date_columns = ['CARTA CONSULTA', 'APROBACIÓN', 'FechaVigencia', 'FechaEfectiva']
+        date_columns = ['CARTA CONSULTA', 'APROBACIÓN','FechaElegibilidad', 'FechaVigencia', 'FechaEfectiva']
         for col in date_columns:
             data[col] = pd.to_datetime(data[col], errors='coerce')
 

@@ -111,6 +111,15 @@ def main():
         # Convertir las fechas en las columnas seleccionadas usando la nueva función
         for col in ['FechaElegibilidad', 'FechaVigencia', 'FechaEfectiva']:
             filtered_df[col] = filtered_df[col].apply(convert_dates)
+
+        # Convertir las columnas de fecha al formato datetime
+        date_columns = ['APROBACIÓN', 'FechaVigencia', 'FechaElegibilidad', 'FechaEfectiva']
+        for col in date_columns:
+            filtered_df[col] = pd.to_datetime(filtered_df[col], errors='coerce')
+
+        # Extraer el año de cada columna de fecha
+        for col in date_columns:
+            filtered_df[col + '_ANO'] = filtered_df[col].dt.year
         
         # Mostrar el nuevo DataFrame filtrado
         st.write(filtered_df)
